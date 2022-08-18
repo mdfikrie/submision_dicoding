@@ -10,6 +10,6 @@ class GetTvOnTheAir implements UseCase<Either<Failure, List<Tv>>, void> {
 
   @override
   Future<Either<Failure, List<Tv>>> call(void params) {
-    return _tvRepository.getOneTheAitTv();
+    return _tvRepository.getOnTheAitTv();
   }
 }

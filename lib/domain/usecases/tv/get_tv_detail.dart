@@ -10,6 +10,6 @@ class GetTvDetail implements UseCase<Either<Failure, TvDetail>, int> {
 
   @override
   Future<Either<Failure, TvDetail>> call(int params) {
-    return _tvRepository.getMovieDetail(params);
+    return _tvRepository.getTvDetail(params);
   }
 }

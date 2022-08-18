@@ -9,6 +9,6 @@ class GetTvRecommendation implements UseCase<Either<Failure, List<Tv>>, int> {
   GetTvRecommendation(this._tvRepository);
   @override
   Future<Either<Failure, List<Tv>>> call(int params) {
-    return _tvRepository.getMovieRecommendations(params);
+    return _tvRepository.getTvRecommendations(params);
   }
 }
