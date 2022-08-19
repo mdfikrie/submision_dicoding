@@ -14,7 +14,14 @@ class TvRepositoryImpl implements TvRepository {
 
   @override
   Future<Either<Failure, TvDetail>> getTvDetail(int params) async {
-    throw UnimplementedError();
+    try {
+      final result = await _tvRemoteDataSource.getTvDetail(params);
+      return Right(result.toEntity());
+    } on ServerException {
+      return Left(ServerFailure(''));
+    } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
+    }
   }
 
   @override

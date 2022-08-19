@@ -15,6 +15,10 @@ class TvResponseModel extends Equatable {
   Map<String, dynamic> toJson() => {
         "results": List<dynamic>.from(listTv!.map((x) => x.toJson())),
       };
+
+  TvResponseModel toEntity() => TvResponseModel(
+        listTv: this.listTv,
+      );
   @override
   // TODO: implement props
   List<Object?> get props => [listTv];
