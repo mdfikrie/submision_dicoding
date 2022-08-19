@@ -9,7 +9,7 @@ class TvModel extends Equatable {
     this.backdropPath,
     this.voteAverage,
     this.overview,
-    this.firstAirDate,
+    // this.firstAirDate,
     this.originCountry,
     this.genreIds,
     this.originalLanguage,
@@ -24,7 +24,7 @@ class TvModel extends Equatable {
   final String? backdropPath;
   final double? voteAverage;
   final String? overview;
-  final DateTime? firstAirDate;
+  // final DateTime? firstAirDate;
   final List<String>? originCountry;
   final List<int>? genreIds;
   final String? originalLanguage;
@@ -39,7 +39,7 @@ class TvModel extends Equatable {
         backdropPath: json["backdrop_path"],
         voteAverage: json["vote_average"].toDouble(),
         overview: json["overview"],
-        firstAirDate: DateTime.parse(json["first_air_date"]),
+        // firstAirDate: DateTime.parse(json["first_air_date"]),
         originCountry: List<String>.from(json["origin_country"].map((x) => x)),
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         originalLanguage: json["original_language"],
@@ -55,8 +55,6 @@ class TvModel extends Equatable {
         "backdrop_path": backdropPath,
         "vote_average": voteAverage,
         "overview": overview,
-        "first_air_date":
-            "${firstAirDate!.year.toString().padLeft(4, '0')}-${firstAirDate!.month.toString().padLeft(2, '0')}-${firstAirDate!.day.toString().padLeft(2, '0')}",
         "origin_country": List<dynamic>.from(originCountry!.map((x) => x)),
         "genre_ids": List<dynamic>.from(genreIds!.map((x) => x)),
         "original_language": originalLanguage,
@@ -67,7 +65,6 @@ class TvModel extends Equatable {
 
   Tv toEntity() => Tv(
         backdropPath: this.backdropPath,
-        firstAirDate: this.firstAirDate,
         genreIds: this.genreIds,
         id: this.id,
         name: this.name,
@@ -90,7 +87,6 @@ class TvModel extends Equatable {
         backdropPath,
         voteAverage,
         overview,
-        firstAirDate,
         originCountry,
         genreIds,
         originalLanguage,

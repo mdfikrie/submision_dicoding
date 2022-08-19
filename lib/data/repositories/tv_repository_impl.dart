@@ -25,9 +25,15 @@ class TvRepositoryImpl implements TvRepository {
   }
 
   @override
-  Future<Either<Failure, List<Tv>>> getTvRecommendations(int params) {
-    // TODO: implement getMovieRecommendations
-    throw UnimplementedError();
+  Future<Either<Failure, List<Tv>>> getTvRecommendations(int params) async {
+    try {
+      final result = await _tvRemoteDataSource.getTvRecommendations(params);
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return Left(ServerFailure(''));
+    } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
+    }
   }
 
   @override

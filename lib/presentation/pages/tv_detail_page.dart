@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
+import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:ditonton/common/state_enum.dart';
@@ -41,6 +42,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
             );
           } else if (provider.tvState == RequestState.Loaded) {
             final tv = provider.tv;
+            print(provider.tvRecommendations);
             return SafeArea(
               child: DetailContent(
                 tv,
@@ -149,11 +151,11 @@ class DetailContent extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            Text(
+                              _showGenres(tv.genres!),
+                            ),
                             // Text(
-                            //   _showGenres(tv.gen),
-                            // ),
-                            // Text(
-                            //   _showDuration(tv.runtime),
+                            //   _showDuration(tv.popularity!),
                             // ),
                             Row(
                               children: [
@@ -194,45 +196,54 @@ class DetailContent extends StatelessWidget {
                                   return Text(data.message);
                                 } else if (data.recommendationState ==
                                     RequestState.Loaded) {
-                                  return Container(
-                                    height: 150,
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        final tv = recommendations[index];
-                                        return Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: InkWell(
-                                            onTap: () {
-                                              // Navigator.pushReplacementNamed(
-                                              //   context,
-                                              //   MovieDetailPage.ROUTE_NAME,
-                                              //   arguments: movie.id,
-                                              // );
-                                            },
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(8),
-                                              ),
-                                              child: CachedNetworkImage(
-                                                imageUrl:
-                                                    'https://image.tmdb.org/t/p/w500${tv.posterPath}',
-                                                placeholder: (context, url) =>
-                                                    Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
+                                  return recommendations.isNotEmpty
+                                      ? Container(
+                                          height: 150,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (context, index) {
+                                              final tv = recommendations[index];
+                                              return Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    // Navigator.pushReplacementNamed(
+                                                    //   context,
+                                                    //   MovieDetailPage.ROUTE_NAME,
+                                                    //   arguments: movie.id,
+                                                    // );
+                                                  },
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                      Radius.circular(8),
+                                                    ),
+                                                    child: CachedNetworkImage(
+                                                      imageUrl:
+                                                          'https://image.tmdb.org/t/p/w500${tv.posterPath}',
+                                                      placeholder:
+                                                          (context, url) =>
+                                                              Center(
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      ),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Icon(Icons.error),
+                                                    ),
+                                                  ),
                                                 ),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        Icon(Icons.error),
-                                              ),
-                                            ),
+                                              );
+                                            },
+                                            itemCount: recommendations.length,
                                           ),
+                                        )
+                                      : Container(
+                                          margin: EdgeInsets.only(top: 20),
+                                          alignment: Alignment.center,
+                                          child: Text('No Recommendation'),
                                         );
-                                      },
-                                      itemCount: recommendations.length,
-                                    ),
-                                  );
                                 } else {
                                   return Container();
                                 }
@@ -276,18 +287,18 @@ class DetailContent extends StatelessWidget {
     );
   }
 
-  // String _showGenres(List<Genre> genres) {
-  //   String result = '';
-  //   for (var genre in genres) {
-  //     result += genre.name + ', ';
-  //   }
+  String _showGenres(List<Genre> genres) {
+    String result = '';
+    for (var genre in genres) {
+      result += genre.name + ', ';
+    }
 
-  //   if (result.isEmpty) {
-  //     return result;
-  //   }
+    if (result.isEmpty) {
+      return result;
+    }
 
-  //   return result.substring(0, result.length - 2);
-  // }
+    return result.substring(0, result.length - 2);
+  }
 
   String _showDuration(int runtime) {
     final int hours = runtime ~/ 60;
