@@ -42,7 +42,6 @@ class _TvDetailPageState extends State<TvDetailPage> {
             );
           } else if (provider.tvState == RequestState.Loaded) {
             final tv = provider.tv;
-            print(provider.tvRecommendations);
             return SafeArea(
               child: DetailContent(
                 tv,
@@ -154,9 +153,6 @@ class DetailContent extends StatelessWidget {
                             Text(
                               _showGenres(tv.genres!),
                             ),
-                            // Text(
-                            //   _showDuration(tv.popularity!),
-                            // ),
                             Row(
                               children: [
                                 RatingBarIndicator(
@@ -298,16 +294,5 @@ class DetailContent extends StatelessWidget {
     }
 
     return result.substring(0, result.length - 2);
-  }
-
-  String _showDuration(int runtime) {
-    final int hours = runtime ~/ 60;
-    final int minutes = runtime % 60;
-
-    if (hours > 0) {
-      return '${hours}h ${minutes}m';
-    } else {
-      return '${minutes}m';
-    }
   }
 }
