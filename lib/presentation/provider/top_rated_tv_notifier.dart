@@ -12,7 +12,7 @@ class TopRatedTvNotifier extends ChangeNotifier {
   RequestState get state => _state;
 
   List<Tv> _listTv = [];
-  List<Tv> get movies => _listTv;
+  List<Tv> get tv => _listTv;
 
   String _message = '';
   String get message => _message;

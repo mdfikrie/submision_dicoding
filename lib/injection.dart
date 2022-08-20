@@ -22,13 +22,17 @@ import 'package:ditonton/domain/usecases/tv/get_tv_detail.dart';
 import 'package:ditonton/domain/usecases/tv/get_tv_on_the_air.dart';
 import 'package:ditonton/domain/usecases/tv/get_tv_popular.dart';
 import 'package:ditonton/domain/usecases/tv/get_tv_recommendation.dart';
+import 'package:ditonton/domain/usecases/tv/search_tv.dart';
 import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
 import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
+import 'package:ditonton/presentation/provider/popular_tv_notifier.dart';
 import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
+import 'package:ditonton/presentation/provider/top_rated_tv_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_list_notifier.dart';
+import 'package:ditonton/presentation/provider/tv_search_notifier.dart';
 import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
@@ -97,6 +101,21 @@ void init() {
       locator(),
     ),
   );
+  locator.registerFactory(
+    () => TopRatedTvNotifier(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => PopularTvNotifier(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvSearchNotifier(
+      locator(),
+    ),
+  );
 
   // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
@@ -115,6 +134,7 @@ void init() {
   locator.registerLazySingleton(() => GetTvOnTheAir(locator()));
   locator.registerLazySingleton(() => GetTvPopular(locator()));
   locator.registerLazySingleton(() => GetTvRecommendation(locator()));
+  locator.registerLazySingleton(() => SearchTv(locator()));
 
   // repository
   locator.registerLazySingleton<MovieRepository>(

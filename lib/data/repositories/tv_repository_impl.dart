@@ -97,8 +97,14 @@ class TvRepositoryImpl implements TvRepository {
   }
 
   @override
-  Future<Either<Failure, List<Tv>>> searchTv(String params) {
-    // TODO: implement searchTv
-    throw UnimplementedError();
+  Future<Either<Failure, List<Tv>>> searchTv(String params) async {
+    try {
+      final result = await _tvRemoteDataSource.searchTv(params);
+      return Right(result.map((model) => model.toEntity()).toList());
+    } on ServerException {
+      return Left(ServerFailure(''));
+    } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
+    }
   }
 }
