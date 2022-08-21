@@ -26,8 +26,8 @@ class _TvDetailPageState extends State<TvDetailPage> {
     Future.microtask(() {
       Provider.of<TvDetailNotifier>(context, listen: false)
           .fetchTvDetail(widget.id);
-      // Provider.of<TvDetailNotifier>(context, listen: false)
-      //     .loadWatchlistStatus(widget.id);
+      Provider.of<TvDetailNotifier>(context, listen: false)
+          .loadWatchlistStatus(widget.id);
     });
   }
 
@@ -107,38 +107,38 @@ class DetailContent extends StatelessWidget {
                             ),
                             ElevatedButton(
                               onPressed: () async {
-                                // if (!isAddedWatchlist) {
-                                //   await Provider.of<TvDetailNotifier>(context,
-                                //           listen: false)
-                                //       .addWatchlist(tv);
-                                // } else {
-                                //   await Provider.of<TvDetailNotifier>(context,
-                                //           listen: false)
-                                //       .removeFromWatchlist(tv);
-                                // }
+                                if (!isAddedWatchlist) {
+                                  await Provider.of<TvDetailNotifier>(context,
+                                          listen: false)
+                                      .addWatchlist(tv);
+                                } else {
+                                  await Provider.of<TvDetailNotifier>(context,
+                                          listen: false)
+                                      .removeFromWatchlist(tv);
+                                }
 
-                                // final message = Provider.of<TvDetailNotifier>(
-                                //         context,
-                                //         listen: false)
-                                //     .watchlistMessage;
+                                final message = Provider.of<TvDetailNotifier>(
+                                        context,
+                                        listen: false)
+                                    .watchlistMessage;
 
-                                // if (message ==
-                                //         TvDetailNotifier
-                                //             .watchlistAddSuccessMessage ||
-                                //     message ==
-                                //         TvDetailNotifier
-                                //             .watchlistRemoveSuccessMessage) {
-                                //   ScaffoldMessenger.of(context).showSnackBar(
-                                //       SnackBar(content: Text(message)));
-                                // } else {
-                                //   showDialog(
-                                //       context: context,
-                                //       builder: (context) {
-                                //         return AlertDialog(
-                                //           content: Text(message),
-                                //         );
-                                //       });
-                                // }
+                                if (message ==
+                                        TvDetailNotifier
+                                            .watchlistAddSuccessMessage ||
+                                    message ==
+                                        TvDetailNotifier
+                                            .watchlistRemoveSuccessMessage) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text(message)));
+                                } else {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          content: Text(message),
+                                        );
+                                      });
+                                }
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -204,11 +204,12 @@ class DetailContent extends StatelessWidget {
                                                     const EdgeInsets.all(4.0),
                                                 child: InkWell(
                                                   onTap: () {
-                                                    // Navigator.pushReplacementNamed(
-                                                    //   context,
-                                                    //   MovieDetailPage.ROUTE_NAME,
-                                                    //   arguments: movie.id,
-                                                    // );
+                                                    Navigator
+                                                        .pushReplacementNamed(
+                                                      context,
+                                                      TvDetailPage.ROUTE_NAME,
+                                                      arguments: tv.id,
+                                                    );
                                                   },
                                                   child: ClipRRect(
                                                     borderRadius:

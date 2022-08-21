@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/remote/tv_remote_data_source.dart';
+import 'package:ditonton/data/datasources/movie_local_data_source.dart';
+import 'package:ditonton/data/models/tv_table.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/common/failure.dart';
@@ -10,7 +12,9 @@ import 'package:ditonton/domain/repositories/tv_repositpry.dart';
 
 class TvRepositoryImpl implements TvRepository {
   final TvRemoteDataSource _tvRemoteDataSource;
-  TvRepositoryImpl(this._tvRemoteDataSource);
+  final MovieLocalDataSource localDataSource;
+
+  TvRepositoryImpl(this._tvRemoteDataSource, this.localDataSource);
 
   @override
   Future<Either<Failure, TvDetail>> getTvDetail(int params) async {
@@ -85,15 +89,27 @@ class TvRepositoryImpl implements TvRepository {
   }
 
   @override
-  Future<Either<Failure, String>> removeWatchlist(TvDetail params) {
-    // TODO: implement removeWatchlist
-    throw UnimplementedError();
+  Future<Either<Failure, String>> removeWatchlist(TvDetail params) async {
+    try {
+      final result =
+          await localDataSource.removeTvWatchlist(TvTable.fromEntity(params));
+      return Right(result);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(e.message));
+    }
   }
 
   @override
-  Future<Either<Failure, String>> saveWatchlist(TvDetail params) {
-    // TODO: implement saveWatchlist
-    throw UnimplementedError();
+  Future<Either<Failure, String>> saveWatchlist(TvDetail params) async {
+    try {
+      final result =
+          await localDataSource.insertTvWatchlist(TvTable.fromEntity(params));
+      return Right(result);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(e.message));
+    } catch (e) {
+      throw e;
+    }
   }
 
   @override

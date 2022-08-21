@@ -50,6 +50,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
             } else if (data.watchlistState == RequestState.Loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
+                  print(data.watchlistMovies[index].type);
                   final movie = data.watchlistMovies[index];
                   return MovieCard(movie);
                 },

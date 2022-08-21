@@ -14,7 +14,9 @@ import 'package:ditonton/domain/usecases/get_popular_movies.dart';
 import 'package:ditonton/domain/usecases/get_top_rated_movies.dart';
 import 'package:ditonton/domain/usecases/get_watchlist_movies.dart';
 import 'package:ditonton/domain/usecases/get_watchlist_status.dart';
+import 'package:ditonton/domain/usecases/remove_tv_watchlist.dart';
 import 'package:ditonton/domain/usecases/remove_watchlist.dart';
+import 'package:ditonton/domain/usecases/save_tv_watchlist.dart';
 import 'package:ditonton/domain/usecases/save_watchlist.dart';
 import 'package:ditonton/domain/usecases/search_movies.dart';
 import 'package:ditonton/domain/usecases/tv/get_top_rated_tv.dart';
@@ -135,6 +137,8 @@ void init() {
   locator.registerLazySingleton(() => GetTvPopular(locator()));
   locator.registerLazySingleton(() => GetTvRecommendation(locator()));
   locator.registerLazySingleton(() => SearchTv(locator()));
+  locator.registerLazySingleton(() => SaveTvWatchlist(locator()));
+  locator.registerLazySingleton(() => RemoveTvWatchlist(locator()));
 
   // repository
   locator.registerLazySingleton<MovieRepository>(
@@ -145,6 +149,7 @@ void init() {
   );
   locator.registerLazySingleton<TvRepository>(
     () => TvRepositoryImpl(
+      locator(),
       locator(),
     ),
   );

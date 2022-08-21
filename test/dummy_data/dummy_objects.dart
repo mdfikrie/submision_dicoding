@@ -42,6 +42,7 @@ final testWatchlistMovie = Movie.watchlist(
   title: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
+  type: 'movie',
 );
 
 final testMovieTable = MovieTable(
@@ -49,6 +50,7 @@ final testMovieTable = MovieTable(
   title: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
+  type: 'movie',
 );
 
 final testMovieMap = {
