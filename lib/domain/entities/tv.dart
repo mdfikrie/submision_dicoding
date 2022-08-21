@@ -36,6 +36,7 @@ class Tv extends Equatable {
     required this.overview,
     required this.posterPath,
     required this.name,
+    required String type,
   });
 
   @override

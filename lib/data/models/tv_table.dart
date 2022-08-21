@@ -46,6 +46,7 @@ class TvTable extends Equatable {
         overview: overview,
         posterPath: posterPath,
         name: title,
+        type: type!,
       );
 
   @override
