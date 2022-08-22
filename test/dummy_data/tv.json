@@ -1,0 +1,19 @@
+{
+    "poster_path": "posterPath",
+    "popularity": 1,
+    "id": 1,
+    "backdrop_path": "backdropPath",
+    "vote_average": 1,
+    "overview": "overview",
+    "first_air_date": "2010-06-08",
+    "origin_country": [
+      "originalCountry"
+    ],
+    "genre_ids": [
+      1,2,3
+    ],
+    "original_language": "originalLanguage",
+    "vote_count": 1,
+    "name": "name",
+    "original_name": "originalName"
+  }

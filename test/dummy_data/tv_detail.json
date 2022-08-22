@@ -1,105 +1,22 @@
 {
-    "adult": false,
-    "backdrop_path": null,
-    "created_by": [
-        {
-            "id": 46330,
-            "credit_id": "56307498925141284c00f325",
-            "name": "Stanley Ralph Ross",
-            "gender": 0,
-            "profile_path": null
-        }
-    ],
-    "episode_run_time": [
-        30
-    ],
-    "first_air_date": "1976-09-11",
-    "genres": [
-        {
-            "id": 35,
-            "name": "Comedy"
-        }
-    ],
-    "homepage": "",
-    "id": 3625,
-    "in_production": false,
-    "languages": [
-        "en"
-    ],
-    "last_air_date": "1976-12-04",
-    "last_episode_to_air": {
-        "air_date": "1976-12-04",
-        "episode_number": 13,
-        "id": 256942,
-        "name": "Albert/Alberta",
-        "overview": "Half man, half woman, Albert/Alberta battles the Monster Squad.",
-        "production_code": "",
-        "runtime": 30,
-        "season_number": 1,
-        "show_id": 3625,
-        "still_path": null,
-        "vote_average": 0.0,
-        "vote_count": 0
-    },
-    "name": "Monster Squad",
-    "next_episode_to_air": null,
-    "networks": [
-        {
-            "id": 6,
-            "name": "NBC",
-            "logo_path": "/nGRVQlfmPBmfkNgCFpx5m7luTxG.png",
-            "origin_country": "US"
-        }
-    ],
-    "number_of_episodes": 13,
+    "backdrop_path": "backdropPath",
+    "first_air_date":"2010-06-08",
+    "genres": [],
+    "homepage": "homePage",
+    "id": 1,
+    "in_production": true,
+    "last_air_date":"2010-06-08",
+    "name": "name",
+    "number_of_episodes": 1,
     "number_of_seasons": 1,
-    "origin_country": [
-        "US"
-    ],
-    "original_language": "en",
-    "original_name": "Monster Squad",
-    "overview": "Monster Squad is a television series that aired Saturday mornings on NBC from 1976-1977 that is unrelated to the later movie of the same name.\n\nThe series stars Fred Grandy as Walt, a criminology student working as a night watchman at \"Fred's Wax Museum\". To pass the time, Walt built a prototype \"Crime Computer\" hidden in a large stone sarcophagus near an exhibit of legendary monsters. When Walt plugged in his computer, \"oscillating vibrations\" brought to life the wax statues of Dracula, the Wolfman who here was named \"Bruce W. Wolf\", and Frankenstein's Monster who was referred to as \"Frank N. Stein\" in the credits.\n\nThe monsters, wanting to make up for the misdeeds of their pasts, became superhero crimefighters who used their unique abilities to challenge and defeat various supervillains. In most episodes, Walt would send the monsters out to investigate crimes and fight the villains while monitoring the activities from the wax museum via the Crime Computer, presumably because his job required him to be at the wax museum at all times. However, Walt would sometimes join the climactic battle with his comrades in some episodes and come to the rescue when needed.",
-    "popularity": 1.8,
-    "poster_path": null,
-    "production_companies": [
-        {
-            "id": 57712,
-            "logo_path": null,
-            "name": "D'Angelo-Bullock-Allen Productions",
-            "origin_country": ""
-        }
-    ],
-    "production_countries": [],
-    "seasons": [
-        {
-            "air_date": null,
-            "episode_count": 8,
-            "id": 10940,
-            "name": "Specials",
-            "overview": "",
-            "poster_path": null,
-            "season_number": 0
-        },
-        {
-            "air_date": "1976-09-11",
-            "episode_count": 13,
-            "id": 10939,
-            "name": "Season 1",
-            "overview": "",
-            "poster_path": null,
-            "season_number": 1
-        }
-    ],
-    "spoken_languages": [
-        {
-            "english_name": "English",
-            "iso_639_1": "en",
-            "name": "English"
-        }
-    ],
-    "status": "Ended",
-    "tagline": "",
-    "type": "Scripted",
-    "vote_average": 0.0,
-    "vote_count": 0
-}
+    "original_language": "originalLanguage",
+    "original_name": "originalName",
+    "overview": "overview",
+    "popularity": 1,
+    "poster_path": "posterPath",
+    "status": "status",
+    "tagline": "tagline",
+    "type": "type",
+    "vote_average": 1.1,
+    "vote_count": 1
+  }
