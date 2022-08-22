@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
@@ -7,11 +6,9 @@ import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/tv_detail_model.dart';
 import 'package:ditonton/data/models/tv_model.dart';
 import 'package:ditonton/data/repositories/tv_repository_impl.dart';
-import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import '../../dummy_data/dummy_objects.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
@@ -282,5 +279,27 @@ void main() {
       expect(
           result, Left(ConnectionFailure('Failed to connect to the network')));
     });
+  });
+
+  group('save watchlist', () {
+    // test('should return success message when saving successful', () async {
+    //   // arrange
+    //   when(mockLocalDataSource.insertTvWatchlist(testTvTable))
+    //       .thenAnswer((_) async => 'Added to Watchlist');
+    //   // act
+    //   final result = await repository.saveWatchlist(testTvDetail);
+    //   // assert
+    //   expect(result, Right('Added to Watchlist'));
+    // });
+
+    // test('should return DatabaseFailure when saving unsuccessful', () async {
+    //   // arrange
+    //   when(mockLocalDataSource.insertWatchlist(testMovieTable))
+    //       .thenThrow(DatabaseException('Failed to add watchlist'));
+    //   // act
+    //   final result = await repository.saveWatchlist(testMovieDetail);
+    //   // assert
+    //   expect(result, Left(DatabaseFailure('Failed to add watchlist')));
+    // });
   });
 }

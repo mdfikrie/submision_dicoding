@@ -77,18 +77,6 @@ class TvRepositoryImpl implements TvRepository {
   }
 
   @override
-  Future<Either<Failure, List<Tv>>> getWatchlistTv() {
-    // TODO: implement getWatchlistTv
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<bool> isAddedToWatchlist(int params) {
-    // TODO: implement isAddedToWatchlist
-    throw UnimplementedError();
-  }
-
-  @override
   Future<Either<Failure, String>> removeWatchlist(TvDetail params) async {
     try {
       final result =

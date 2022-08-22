@@ -12,6 +12,4 @@ abstract class TvRepository {
   Future<Either<Failure, List<Tv>>> searchTv(String params);
   Future<Either<Failure, String>> saveWatchlist(TvDetail params);
   Future<Either<Failure, String>> removeWatchlist(TvDetail params);
-  Future<bool> isAddedToWatchlist(int params);
-  Future<Either<Failure, List<Tv>>> getWatchlistTv();
 }

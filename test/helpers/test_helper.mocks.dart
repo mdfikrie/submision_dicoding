@@ -224,17 +224,6 @@ class MockTvRepository extends _i1.Mock implements _i11.TvRepository {
                   _FakeEither_0<_i8.Failure, String>(
                       this, Invocation.method(#removeWatchlist, [params]))))
           as _i7.Future<_i2.Either<_i8.Failure, String>>);
-  @override
-  _i7.Future<bool> isAddedToWatchlist(int? params) =>
-      (super.noSuchMethod(Invocation.method(#isAddedToWatchlist, [params]),
-          returnValue: _i7.Future<bool>.value(false)) as _i7.Future<bool>);
-  @override
-  _i7.Future<_i2.Either<_i8.Failure, List<_i12.Tv>>> getWatchlistTv() =>
-      (super.noSuchMethod(Invocation.method(#getWatchlistTv, []),
-          returnValue: _i7.Future<_i2.Either<_i8.Failure, List<_i12.Tv>>>.value(
-              _FakeEither_0<_i8.Failure, List<_i12.Tv>>(
-                  this, Invocation.method(#getWatchlistTv, [])))) as _i7
-          .Future<_i2.Either<_i8.Failure, List<_i12.Tv>>>);
 }
 
 /// A class which mocks [MovieRemoteDataSource].
