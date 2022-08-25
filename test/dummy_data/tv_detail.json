@@ -1,22 +1,33 @@
+
 {
-    "backdrop_path": "backdropPath",
-    "first_air_date":"2010-06-08",
-    "genres": [],
-    "homepage": "homePage",
-    "id": 1,
-    "in_production": true,
-    "last_air_date":"2010-06-08",
-    "name": "name",
-    "number_of_episodes": 1,
-    "number_of_seasons": 1,
-    "original_language": "originalLanguage",
-    "original_name": "originalName",
-    "overview": "overview",
-    "popularity": 1,
-    "poster_path": "posterPath",
-    "status": "status",
-    "tagline": "tagline",
-    "type": "type",
-    "vote_average": 1.1,
-    "vote_count": 1
-  }
+  "dates": {
+    "maximum": "2021-05-23",
+    "minimum": "2021-04-05"
+  },
+  "page": 1,
+  "results": [
+    {
+      "poster_path": "posterPath",
+      "popularity": 1,
+      "id": 1,
+      "backdrop_path": "backdropPath",
+      "vote_average": 1,
+      "overview": "overview",
+      "first_air_date": "2010-06-08",
+      "origin_country": [
+        "originalCountry"
+      ],
+      "genre_ids": [
+        1,2,3
+      ],
+      "original_language": "originalLanguage",
+      "vote_count": 1,
+      "name": "name",
+      "original_name": "originalName"
+    }
+    
+  ],
+  "total_pages": 47,
+  "total_results": 940
+}
+    
