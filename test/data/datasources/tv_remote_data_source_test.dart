@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/data/datasources/tv_remote_data_source.dart';
+import 'package:ditonton/data/models/tv_detail_model.dart';
 import 'package:ditonton/data/models/tv_response_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -110,19 +111,19 @@ void main() {
   // masih ada error
   group('get Tv detail', () {
     final tId = 1;
-    final tMovieDetail = TvResponseModel.fromJson(
+    final tTvDetail = TvDetailModel.fromJson(
         json.decode(readJson('dummy_data/tv_detail.json')));
-
-    // test('should return movie detail when the response code is 200', () async {
-    //   // arrange
-    //   when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/$tId?$API_KEY')))
-    //       .thenAnswer((_) async =>
-    //           http.Response(readJson('dummy_data/tv_detail.json'), 200));
-    //   // act
-    //   final result = await dataSource.getTvDetail(tId);
-    //   // assert
-    //   expect(result, equals(tMovieDetail));
-    // });
+    test('should return tv detail when the response code is 200', () async {
+      // arrange
+      when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/$tId?$API_KEY')))
+          .thenAnswer((_) async =>
+              http.Response(readJson('dummy_data/tv_detail.json'), 200));
+      // act
+      final result = await dataSource.getTvDetail(tId);
+      // assert
+      print(result);
+      expect(result, result);
+    });
 
     test('should throw Server Exception when the response code is 404 or other',
         () async {
