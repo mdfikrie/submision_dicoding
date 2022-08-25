@@ -41,14 +41,6 @@ class TvTable extends Equatable {
         'type': type,
       };
 
-  Tv toEntity() => Tv.watchlist(
-        id: id,
-        overview: overview,
-        posterPath: posterPath,
-        name: title,
-        type: type!,
-      );
-
   @override
   List<Object?> get props => [id, title, posterPath, overview, type];
 }

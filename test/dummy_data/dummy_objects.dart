@@ -63,6 +63,14 @@ final testTvDetail = TvDetail(
   type: 'type',
 );
 
+final testTvTable = TvTable(
+  id: 1,
+  title: 'title',
+  posterPath: 'posterPath',
+  overview: 'overview',
+  type: 'movie',
+);
+
 final testWatchlistMovie = Movie.watchlist(
   id: 1,
   title: 'title',
@@ -84,14 +92,6 @@ final testWatchlistTv = Tv.watchlist(
   posterPath: 'posterPath',
   overview: 'overview',
   type: 'Tv',
-);
-
-final testTvTable = TvTable(
-  id: 1,
-  title: 'title',
-  posterPath: 'posterPath',
-  overview: 'overview',
-  type: 'movie',
 );
 
 final testMovieMap = {

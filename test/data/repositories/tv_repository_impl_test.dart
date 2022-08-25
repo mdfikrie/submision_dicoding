@@ -5,10 +5,14 @@ import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/tv_detail_model.dart';
 import 'package:ditonton/data/models/tv_model.dart';
+import 'package:ditonton/data/models/tv_table.dart';
 import 'package:ditonton/data/repositories/tv_repository_impl.dart';
+import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv.dart';
+import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import '../../dummy_data/dummy_objects.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
@@ -281,25 +285,77 @@ void main() {
     });
   });
 
-  group('save watchlist', () {
-    // test('should return success message when saving successful', () async {
-    //   // arrange
-    //   when(mockLocalDataSource.insertTvWatchlist(testTvTable))
-    //       .thenAnswer((_) async => 'Added to Watchlist');
-    //   // act
-    //   final result = await repository.saveWatchlist(testTvDetail);
-    //   // assert
-    //   expect(result, Right('Added to Watchlist'));
-    // });
+  var tTvTablet2 = TvTable(
+    id: 1,
+    title: 'Name',
+    posterPath: 'posterPath',
+    overview: 'overview',
+    type: 'tv',
+  );
 
-    // test('should return DatabaseFailure when saving unsuccessful', () async {
-    //   // arrange
-    //   when(mockLocalDataSource.insertWatchlist(testMovieTable))
-    //       .thenThrow(DatabaseException('Failed to add watchlist'));
-    //   // act
-    //   final result = await repository.saveWatchlist(testMovieDetail);
-    //   // assert
-    //   expect(result, Left(DatabaseFailure('Failed to add watchlist')));
-    // });
+  final testTvDetail2 = TvDetail(
+    backdropPath: 'backdropPath',
+    genres: [Genre(id: 1, name: 'Action')],
+    id: 1,
+    overview: 'overview',
+    posterPath: 'posterPath',
+    voteAverage: 1,
+    voteCount: 1,
+    firstAirDate: DateTime.now(),
+    homepage: 'Homepage',
+    inProduction: true,
+    lastAirDate: DateTime.now(),
+    name: 'Name',
+    numberOfEpisodes: 20,
+    numberOfSeasons: 10,
+    originalLanguage: 'en',
+    originalName: 'originalName',
+    popularity: 8.8,
+    status: 'status',
+    tagline: 'tagLine',
+    type: 'tv',
+  );
+  group('save tv watchlist', () {
+    test('should return success message when saving successful', () async {
+      // arrange
+      when(mockLocalDataSource.insertTvWatchlist(tTvTablet2))
+          .thenAnswer((_) async => 'Added to Watchlist');
+      // act
+      final result = await repository.saveWatchlist(testTvDetail2);
+      // // assert
+      expect(result, Right('Added to Watchlist'));
+    });
+
+    test('should return DatabaseFailure when saving unsuccessful', () async {
+      // arrange
+      when(mockLocalDataSource.insertTvWatchlist(tTvTablet2))
+          .thenThrow(DatabaseException('Failed to add watchlist'));
+      // act
+      final result = await repository.saveWatchlist(testTvDetail);
+      // assert
+      expect(result, Left(DatabaseFailure('Failed to add watchlist')));
+    });
+  });
+
+  group('remove tv watchlist', () {
+    test('should return success message when remove successful', () async {
+      // arrange
+      when(mockLocalDataSource.removeTvWatchlist(tTvTablet2))
+          .thenAnswer((_) async => 'Removed from watchlist');
+      // act
+      final result = await repository.removeWatchlist(testTvDetail2);
+      // assert
+      expect(result, Right('Removed from watchlist'));
+    });
+
+    test('should return DatabaseFailure when remove unsuccessful', () async {
+      // arrange
+      when(mockLocalDataSource.removeTvWatchlist(tTvTablet2))
+          .thenThrow(DatabaseException('Failed to remove watchlist'));
+      // act
+      final result = await repository.removeWatchlist(testTvDetail2);
+      // assert
+      expect(result, Left(DatabaseFailure('Failed to remove watchlist')));
+    });
   });
 }

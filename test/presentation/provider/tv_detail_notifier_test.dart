@@ -75,6 +75,39 @@ void main() {
         .thenAnswer((_) async => Right(tTv));
   }
 
+  test('should get the watchlist status', () async {
+    // arrange
+    when(mockGetWatchlistStatus.execute(1)).thenAnswer((_) async => true);
+    // act
+    await provider.loadWatchlistStatus(1);
+    // assert
+    expect(provider.isAddedToWatchlist, true);
+  });
+
+  test('should execute save watchlist when function called', () async {
+    // arrange
+    when(mockSaveWatchlist.execute(testTvDetail))
+        .thenAnswer((_) async => Right('Success'));
+    when(mockGetWatchlistStatus.execute(testMovieDetail.id))
+        .thenAnswer((_) async => true);
+    // act
+    await provider.addWatchlist(testTvDetail);
+    // assert
+    verify(mockSaveWatchlist.execute(testTvDetail));
+  });
+
+  test('should execute remove watchlist when function called', () async {
+    // arrange
+    when(mockRemoveWatchlist.execute(testTvDetail))
+        .thenAnswer((_) async => Right('Removed'));
+    when(mockGetWatchlistStatus.execute(testTvDetail.id))
+        .thenAnswer((_) async => false);
+    // act
+    await provider.removeFromWatchlist(testTvDetail);
+    // assert
+    verify(mockRemoveWatchlist.execute(testTvDetail));
+  });
+
   group('Get Tv Detail', () {
     test('should get data from the usecase', () async {
       // arrange
