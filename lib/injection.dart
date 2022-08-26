@@ -25,6 +25,14 @@ import 'package:ditonton/domain/usecases/tv/get_tv_on_the_air.dart';
 import 'package:ditonton/domain/usecases/tv/get_tv_popular.dart';
 import 'package:ditonton/domain/usecases/tv/get_tv_recommendation.dart';
 import 'package:ditonton/domain/usecases/tv/search_tv.dart';
+import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
+import 'package:ditonton/presentation/bloc/now_playing_movie/now_playing_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/on_the_air_tv/on_the_air_tv_bloc.dart';
+import 'package:ditonton/presentation/bloc/popular_movie/popular_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/popular_tv/popular_tv_bloc.dart';
+import 'package:ditonton/presentation/bloc/top_rated_movie/top_rated_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';
+import 'package:ditonton/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
@@ -49,6 +57,18 @@ void init() {
       () => TvRemoteDataSourceImpl(locator()));
   locator.registerLazySingleton<MovieLocalDataSource>(
       () => MovieLocalDataSourceImpl(databaseHelper: locator()));
+
+  // bloc
+  locator.registerFactory(() => NowPlayingMovieBloc(locator()));
+  locator.registerFactory(() => PopularMovieBloc(locator()));
+  locator.registerFactory(() => TopRatedMovieBloc(locator()));
+  locator.registerFactory(() =>
+      MovieDetailBloc(locator(), locator(), locator(), locator(), locator()));
+  locator.registerFactory(() => OnTheAirTvBloc(locator()));
+  locator.registerFactory(() => PopularTvBloc(locator()));
+  locator.registerFactory(() => TopRatedTvBloc(locator()));
+  locator.registerFactory(() =>
+      TvDetailBloc(locator(), locator(), locator(), locator(), locator()));
 
   // provider
   locator.registerFactory(
