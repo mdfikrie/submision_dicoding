@@ -1,11 +1,10 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_search_notifier.dart';
+import 'package:ditonton/presentation/bloc/search_movie/search_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/search_tv/search_tv_bloc.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:ditonton/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchPage extends StatelessWidget {
   static const ROUTE_NAME = '/search';
@@ -27,11 +26,13 @@ class SearchPage extends StatelessWidget {
             TextField(
               onSubmitted: (query) {
                 if (argument == 'tv') {
-                  Provider.of<TvSearchNotifier>(context, listen: false)
-                      .fetchTvSearch(query);
+                  context
+                      .read<SearchTvBloc>()
+                      .add(SearchTvEvent(keyword: query));
                 } else {
-                  Provider.of<MovieSearchNotifier>(context, listen: false)
-                      .fetchMovieSearch(query);
+                  context
+                      .read<SearchMovieBloc>()
+                      .add(SearchMovieEvent(keyword: query));
                 }
               },
               decoration: InputDecoration(
@@ -47,54 +48,52 @@ class SearchPage extends StatelessWidget {
               style: kHeading6,
             ),
             argument == 'movie'
-                ? Consumer<MovieSearchNotifier>(
-                    builder: (context, data, child) {
-                      if (data.state == RequestState.Loading) {
+                ? BlocBuilder<SearchMovieBloc, SearchMovieState>(
+                    builder: (context, state) {
+                      if (state is SearchMovieLoading) {
                         return Center(
                           child: CircularProgressIndicator(),
                         );
-                      } else if (data.state == RequestState.Loaded) {
-                        final result = data.searchResult;
+                      } else if (state is SearchMovieLoaded) {
+                        final result = state.listMovie;
                         return Expanded(
                           child: ListView.builder(
                             padding: const EdgeInsets.all(8),
                             itemBuilder: (context, index) {
-                              final movie = data.searchResult[index];
+                              final movie = state.listMovie![index];
                               return MovieCard(movie);
                             },
-                            itemCount: result.length,
+                            itemCount: result!.length,
                           ),
                         );
-                      } else {
-                        return Expanded(
-                          child: Container(),
-                        );
                       }
+                      return Expanded(
+                        child: Container(),
+                      );
                     },
                   )
-                : Consumer<TvSearchNotifier>(
-                    builder: (context, data, child) {
-                      if (data.state == RequestState.Loading) {
+                : BlocBuilder<SearchTvBloc, SearchTvState>(
+                    builder: (context, state) {
+                      if (state is SearchTvLoading) {
                         return Center(
                           child: CircularProgressIndicator(),
                         );
-                      } else if (data.state == RequestState.Loaded) {
-                        final result = data.searchResult;
+                      } else if (state is SearchTvLoaded) {
+                        final result = state.listTv;
                         return Expanded(
                           child: ListView.builder(
                             padding: const EdgeInsets.all(8),
                             itemBuilder: (context, index) {
-                              final tv = data.searchResult[index];
+                              final tv = state.listTv![index];
                               return TvCard(tv);
                             },
-                            itemCount: result.length,
+                            itemCount: result!.length,
                           ),
                         );
-                      } else {
-                        return Expanded(
-                          child: Container(),
-                        );
                       }
+                      return Expanded(
+                        child: Container(),
+                      );
                     },
                   ),
           ],

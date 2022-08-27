@@ -2,8 +2,14 @@ import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/now_playing_movie/now_playing_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/on_the_air_tv/on_the_air_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/popular_movie/popular_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/popular_tv/popular_tv_bloc.dart';
+import 'package:ditonton/presentation/bloc/search_movie/search_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/search_tv/search_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/top_rated_movie/top_rated_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';
+import 'package:ditonton/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/home_tv_page.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
@@ -35,9 +41,16 @@ class MyApp extends StatelessWidget {
             create: (context) => di.locator.get<NowPlayingMovieBloc>()),
         BlocProvider(create: (context) => di.locator.get<TopRatedMovieBloc>()),
         BlocProvider(create: (context) => di.locator.get<MovieDetailBloc>()),
+        BlocProvider(create: (context) => di.locator.get<OnTheAirTvBloc>()),
+        BlocProvider(create: (context) => di.locator.get<PopularTvBloc>()),
+        BlocProvider(create: (context) => di.locator.get<TopRatedTvBloc>()),
+        BlocProvider(create: (context) => di.locator.get<TvDetailBloc>()),
+        BlocProvider(create: (context) => di.locator.get<SearchMovieBloc>()),
+        BlocProvider(create: (context) => di.locator.get<SearchTvBloc>()),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Ditonton',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
           colorScheme: kColorScheme,
           primaryColor: kRichBlack,
