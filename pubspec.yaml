@@ -18,6 +18,9 @@ dependencies:
   sqflite: ^2.0.0+3
   path_provider: ^2.0.2
   flutter_bloc: 8.1.1
+  firebase_core: 1.21.1
+  firebase_analytics: ^9.3.3
+  firebase_crashlytics: ^2.8.9
   flutter: 
     sdk: flutter
 
@@ -30,5 +33,6 @@ dev_dependencies:
 flutter: 
   assets: 
     - assets/
+    - assets/certificates/
   uses-material-design: true
 
